@@ -77,9 +77,15 @@ CREATE PROCEDURE sp_finish_campaign (IN c_title VARCHAR(30))
 BEGIN
     -- do the error handling
 DECLARE cost int;
+DECLARE camp_id int;
 DECLARE error_string varchar(255);
-    SET cost = cost_of_campaign(CAMPAIGN_NO);
-    UPDATE campaign SET CAMPAIGNFINISHDATE=CURRENT_DATE, ACTUALCOST = cost WHERE TITLE=c_title;
+    DECLARE mycursor CURSOR FOR SELECT CAMPAIGN_NO FROM campaign WHERE TITLE=c_title;
+    OPEN mycursor;
+    read_loop: LOOP
+    FETCH mycursor INTO camp_id;
+    END LOOP;
+    SET cost = cost_of_campaign(camp_id);
+    UPDATE campaign SET CAMPAIGNFINISHDATE = CURRENT_DATE , ACTUALCOST = cost WHERE TITLE=c_title;
 END
 //
 
