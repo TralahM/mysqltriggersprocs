@@ -63,6 +63,7 @@ values
 (4,"TRALAHTEK LTD","Home",1),
 (8,"JKL LTD","GUAM",3),
 (7,"XYZ LTD","CHICAGO",5);
+commit;
 
 insert into campaign (CAMPAIGN_NO,TITLE,CUSTOMER_ID,THEME,CAMPAIGNSTARTDATE,CAMPAIGNFINISHDATE,ESTIMATEDCOST,ACTUALCOST)
 values
@@ -71,6 +72,7 @@ values
 (9,"campaign",4,"broadcast","2019-10-23","2019-12-29",45700,NULL),
 (8,"roadshow",8,"mysql","2018-04-23","2018-12-23",9500,NULL),
 (10,"reseller",7,"technology","2019-04-13","2019-06-19",19000,NULL);
+commit;
 
 insert into workson (STAFFNO,CAMPAIGN_NO,WDATE,HOUR)
 values
@@ -83,6 +85,7 @@ values
 (5,8,'2018-07-11',7),
 (1,10,'2019-04-20',5),
 (3,10,'2019-04-20',7);
+commit;
 
 insert into invoice(CAMPAIGN_NO,DATEISSUED,BALANCEOWING,STATUS)
 values
@@ -99,10 +102,11 @@ call sp_finish_campaign('Marketing');
 --- check error status
 call sp_finish_campaign('ghadskbbcsjl');
 call sync_invoice;
-select * from alerts;
-select * from campaign;
-/* select * from invoice; */
 commit;
-
-
+select * from campaign;
+select * from invoice;
+select * from workson;
+select * from customer;
+select * from alerts;
+/* select * from invoice; */
 -- Finish with commiting work or rolling back.

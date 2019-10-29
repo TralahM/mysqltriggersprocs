@@ -16,7 +16,7 @@ CREATE TRIGGER tr_overdue AFTER UPDATE ON invoice
 FOR EACH ROW
     BEGIN
         IF old.STATUS <> "OVERDUE" AND new.STATUS = "OVERDUE" THEN
-            INSERT INTO alerts(message_date,origin,message) values(CURRENT_DATE,CURRENT_USER,CONCAT( "Invoice with number: ",new.INVOICENO," is now overdue!"));
+            INSERT INTO alerts (message_date,origin,message) values(CURRENT_DATE,CURRENT_USER,CONCAT( "Invoice with number: ",new.INVOICENO," is now overdue!"));
         END IF;
     END
 //
